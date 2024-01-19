@@ -1,8 +1,8 @@
 
-import 'package:contracterApp/tabview/buildingWork.dart';
-import 'package:contracterApp/tabview/cementWork.dart';
-import 'package:contracterApp/tabview/painting.dart';
-import 'package:contracterApp/tabview/socialWork.dart';
+import 'package:contracterApp/view/buildingWork.dart';
+import 'package:contracterApp/view/cementWork.dart';
+import 'package:contracterApp/view/painting.dart';
+import 'package:contracterApp/view/socialWork.dart';
 import 'package:flutter/material.dart';
 class TabPage extends StatelessWidget {
   List<String> jobCategories = ['CementWork', 'BuildingWork', 'SocialWork', 'Painting'];

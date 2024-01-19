@@ -217,9 +217,9 @@ Future <void>addworkers(Jobworkers value)async{
    }
   }
  
+    File? selectimage;
    fromgallery() async {
     
-    File? selectimage;
     final returnedimage =
       await ImagePicker().pickImage(source: ImageSource.gallery);
       selectimage = File(returnedimage!.path);

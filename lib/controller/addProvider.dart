@@ -41,6 +41,7 @@ Future<void> onAddStudentOnClick(context) async {
       context,
       MaterialPageRoute(builder: (context) => ListWorkers(selectedJobCategory: _jobCategories)),
     );
+    
     notifyListeners();
   }
   void selectJobCategory(String newValue) {

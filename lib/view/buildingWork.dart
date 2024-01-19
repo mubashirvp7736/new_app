@@ -1,37 +1,37 @@
 
 import 'dart:io';
-import 'package:contracterApp/controller/Workerde.dart';
 import 'package:contracterApp/controller/db_provider.dart';
+import 'package:contracterApp/controller/Workerde.dart';
 import 'package:contracterApp/db/model/model.dart';
-import 'package:contracterApp/controller/tabview.dart';
 import 'package:contracterApp/view/details.dart';
 import 'package:contracterApp/view/edit.dart';
 import 'package:contracterApp/view/search.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class Social extends StatefulWidget {
+class Building extends StatefulWidget {
   final String? selectedJobCategory;
-  const Social({Key? key, this.selectedJobCategory}) : super(key: key);
+  const Building({Key? key, this.selectedJobCategory}) : super(key: key);
   @override
   // ignore: library_private_types_in_public_api
   _ListStudentState createState() => _ListStudentState();
 }
 
-class _ListStudentState extends State<Social> {
+class _ListStudentState extends State<Building> {
   String ? image;
   @override
   void initState() {
     super.initState(); 
-    Provider.of<DbProvider>(context,listen: false). getAllStud();
+   Provider.of<DbProvider>(context,listen: false). getAllStud();
   }
+  
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.grey[700],
-          title: Text('SocialWorkers'),
+          title: Text('BuildWorkers'),
           centerTitle: true,
           actions: [
             IconButton(onPressed: (){
@@ -89,7 +89,7 @@ Widget buildStudentCard(Jobworkers data, int index) {
                   IconButton(
                     onPressed: () { 
                       showModalBottomSheet(context: context, builder: (context) {
-                        return EditScreen(name: data.name, number:data. number, age:data.age, jobCategory:data. jobcategories, index: index, image:data.image!, jobCategories: '',);
+                        return EditScreen(name: data.name, number:data. number, age:data.age, jobCategories:data. jobcategories, index: index, image:data.image!,);
                       },);
                     },
                     icon: Icon(Icons.edit),
@@ -126,11 +126,12 @@ Widget buildStudentCard(Jobworkers data, int index) {
     );
   }
   Widget buildStudentList() {
-    return 
-     Consumer<DbProvider>(
+ 
+   return
+    Consumer<DbProvider>(
   builder: (context, dbvalue, child) {
     final filteredWorkerList = dbvalue.workersList
-        .where((worker) => worker.jobcategories.contains('SocialWork'))
+        .where((worker) => worker.jobcategories.contains('BuildingWork'))
         .toList();
     
     Provider.of<Workerdetail>(context).filteredworkerList = List.from(filteredWorkerList);
@@ -138,8 +139,7 @@ Widget buildStudentCard(Jobworkers data, int index) {
     return ListView.separated(
       itemBuilder: (ctx, index) {
         final data = filteredWorkerList[index];
-        return buildStudentCard(data, index);
-      },
+        return buildStudentCard(data, index); },
       separatorBuilder: (ctx, index) {
         return const Divider();
       },
